@@ -1,0 +1,25 @@
+{% extends 'catalog/base.html' %}
+{% load template_tags %}
+{% block content %}
+
+<div class="prduct-container">
+    <div class="row">
+        <div class="col-6" style="display:flex; justify-content: center;">
+            <img src="{{ product.image | media_filter }}" alt="No image">
+        </div>
+        <div class="col-6">
+            <h2>Информация о товаре</h2>
+            <ul>
+                <li>id товара: {{ product.id }}</li>
+                <li>Категория товара: {{ product.category }}</li>
+                <li>Название товара: {{ product.name }}</li>
+                <li>Описание товара: {{ product.description | truncatechars:100 }}</li>
+                <li>Цена товара: {{ product.name }}</li>
+                <li>Добавлен: {{ product.created_at }}</li>
+                <li>Последнее изменение: {{ product.updated_at }}</li>
+            </ul>
+        </div>
+        <a href="../product_catalog" class="w-100 btn btn-lg btn-primary mt-5">Назад</a>
+    </div>
+</div>
+{% endblock %}
