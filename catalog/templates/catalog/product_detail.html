@@ -19,7 +19,7 @@
                 <li>Последнее изменение: {{ product.updated_at }}</li>
             </ul>
         </div>
-        <a href="../product_catalog" class="w-100 btn btn-lg btn-primary mt-5">Назад</a>
+        <a href="{% url 'catalog:product_list' %}" class="w-100 btn btn-lg btn-primary mt-5">Назад</a>
     </div>
 </div>
 {% endblock %}

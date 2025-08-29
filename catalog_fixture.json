@@ -4,12 +4,12 @@
     "pk": 1,
     "fields": {
         "name": "Хлеб",
-        "description": "Хлеб описание... ",
-        "image": "",
+        "description": "Хлеб описание...",
+        "image": "product_image/Без_названия.jpeg",
         "category": 2,
         "price": 50,
-        "created_at": "2025-08-21T18:13:21.978Z",
-        "updated_at": "2025-08-21T18:13:21.978Z"
+        "created_at": "2025-08-24T11:53:03.318Z",
+        "updated_at": "2025-08-24T13:32:58.730Z"
     }
 },
 {
@@ -18,11 +18,11 @@
     "fields": {
         "name": "Samsung",
         "description": "Samsung описание...",
-        "image": "",
+        "image": "product_image/Без_названия_2.jpeg",
         "category": 1,
         "price": 50000,
-        "created_at": "2025-08-21T18:13:21.981Z",
-        "updated_at": "2025-08-21T18:13:21.981Z"
+        "created_at": "2025-08-24T11:53:03.325Z",
+        "updated_at": "2025-08-24T13:33:07.977Z"
     }
 },
 {
@@ -31,11 +31,11 @@
     "fields": {
         "name": "Молоко",
         "description": "Молоко описание...",
-        "image": "",
+        "image": "product_image/Без_названия_1.jpeg",
         "category": 2,
         "price": 110,
-        "created_at": "2025-08-21T18:13:21.982Z",
-        "updated_at": "2025-08-21T18:13:21.982Z"
+        "created_at": "2025-08-24T11:53:03.325Z",
+        "updated_at": "2025-08-24T13:33:14.227Z"
     }
 },
 {
@@ -44,11 +44,11 @@
     "fields": {
         "name": "Братья Карамазовы",
         "description": "Братья Карамазовы описание...",
-        "image": "",
+        "image": "product_image/Без_названия_4.jpeg",
         "category": 3,
         "price": 1100,
-        "created_at": "2025-08-21T18:13:21.983Z",
-        "updated_at": "2025-08-21T18:13:21.983Z"
+        "created_at": "2025-08-24T11:53:03.326Z",
+        "updated_at": "2025-08-24T13:33:22.648Z"
     }
 },
 {
@@ -57,11 +57,11 @@
     "fields": {
         "name": "Замок",
         "description": "Замок описание...",
-        "image": "",
+        "image": "product_image/Без_названия_5.jpeg",
         "category": 3,
         "price": 1500,
-        "created_at": "2025-08-21T18:13:21.983Z",
-        "updated_at": "2025-08-21T18:13:21.983Z"
+        "created_at": "2025-08-24T11:53:03.327Z",
+        "updated_at": "2025-08-24T13:33:31.036Z"
     }
 },
 {
@@ -70,11 +70,24 @@
     "fields": {
         "name": "iPhone",
         "description": "iPhone описание...",
-        "image": "",
+        "image": "product_image/Без_названия_3.jpeg",
         "category": 1,
         "price": 110000,
-        "created_at": "2025-08-21T18:13:21.984Z",
-        "updated_at": "2025-08-21T18:13:21.984Z"
+        "created_at": "2025-08-24T11:53:03.327Z",
+        "updated_at": "2025-08-24T13:33:37.329Z"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 8,
+    "fields": {
+        "name": "Макбет",
+        "description": "Пьеса Шекспир, добавлена через POST",
+        "image": "product_image/Без_названия6.jpeg",
+        "category": 3,
+        "price": 2300,
+        "created_at": "2025-08-24T19:40:53.601Z",
+        "updated_at": "2025-08-24T19:40:53.601Z"
     }
 },
 {

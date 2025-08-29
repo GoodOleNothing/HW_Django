@@ -4,9 +4,9 @@
     Главное меню
   </button>
   <ul class="dropdown-menu" style="width:13%;">
-    <li><a href="../home" class="dropdown-item" type="button">Домашняя страница</a></li>
-    <li><a href="../contacts" class="dropdown-item" type="button">Контакты</a></li>
-    <li><a href="../product_catalog" class="dropdown-item" type="button">Каталог</a></li>
-    <li><a href="../add_product" class="dropdown-item" type="button">Добавить продукт</a></li>
+    <li><a href="{% url 'catalog:home'%}" class="dropdown-item" type="button">Домашняя страница</a></li>
+    <li><a href="{% url 'catalog:contacts'%}" class="dropdown-item" type="button">Контакты</a></li>
+    <li><a href="{% url 'catalog:product_list'%}" class="dropdown-item" type="button">Каталог</a></li>
+    <li><a href="{% url 'catalog:add_product' %}" class="dropdown-item" type="button">Добавить продукт</a></li>
   </ul>
 </div>
