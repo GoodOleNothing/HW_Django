@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Product, Category
-
 from django.views.generic import ListView, DetailView, CreateView,TemplateView
 from django.views.generic.edit import UpdateView, DeleteView
 from django.urls import reverse_lazy
-
+from django import forms
+from .models import Product, Category
+from .forms import ProductForm
 # Create your views here.
 
 
@@ -19,8 +20,26 @@ class ProductDetail(DetailView):
 
 class ProductCreate(CreateView):
     model = Product
-    fields = ['name', 'description', 'image', 'category', 'price']
+    form_class = ProductForm
     success_url = reverse_lazy('catalog:product_list')
+
+
+class ProductDelete(DeleteView):
+    model = Product
+    success_url = reverse_lazy('catalog:product_list')
+
+
+class ProductUpdate(UpdateView):
+    model = Product
+    form_class = ProductForm
+    template_name = 'catalog/product_update.html'
+    success_url = reverse_lazy('catalog:product_list')
+
+
+#class ProductCreate(CreateView):
+#    model = Product
+#    fields = ['name', 'description', 'image', 'category', 'price']
+#    success_url = reverse_lazy('catalog:product_list')
 
 
 class ContactView(TemplateView):
