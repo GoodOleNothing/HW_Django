@@ -21,7 +21,7 @@ class BlogDetailView(DetailView):
     def get_object(self, queryset=None):
         count = super().get_object()
         count.views_count += 1
-        count.save()
+        count.save(update_fields=['views_count'])
         if count.views_count == 10:
             send_mail(
                 subject="100 просмотров",
