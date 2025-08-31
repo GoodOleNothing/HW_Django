@@ -1,0 +1,13 @@
+{% extends 'catalog/base.html' %}
+{% block content %}
+
+<div class="col-sm-6">
+    <form method="post" action="" class="form-floating" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h1>Удалить продукт?</h1>
+        <button type="submit" class="btn btn-lg btn-block btn-outline-primary mt-5">Подтвердить</button>
+        <a href="{% url 'catalog:product_list'%}" class="btn btn-lg btn-block btn-outline-primary mt-5">Назад</a>
+    </form>
+</div>
+
+{% endblock %}
