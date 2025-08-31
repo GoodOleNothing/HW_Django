@@ -1,6 +1,7 @@
 from django import forms
 from .models import Product
 from django.core.exceptions import ValidationError
+from PIL import Image
 
 
 class ProductForm(forms.ModelForm):
@@ -8,24 +9,10 @@ class ProductForm(forms.ModelForm):
         model = Product
         fields = ['name', 'description', 'image', 'category', 'price']
 
-    def clean(self):
-        cleaned_data = super().clean()
-        forbidden_words = ["казино", "криптовалюта", "крипта", "биржа", "дешево", "бесплатно",
-                           "обман", "полиция", "радар"]
-
-        for field in ["name", "description"]:
-            value = cleaned_data.get(field, "")
-            for word in forbidden_words:
-                if word.lower() in value.lower():
-                    raise ValidationError(f"Слово '{word}' нельзя использовать.")
-        return cleaned_data
-
-    def clean_price(self):
-        if self.cleaned_data['price'] < 0:
-            raise ValidationError("Цена не может быть отрицательной.")
-        return self.cleaned_data['price']
-
     def __init__(self, *args, **kwargs):
+        self.forbidden_words = ["казино", "криптовалюта", "крипта", "биржа", "дешево", "бесплатно",
+                                "обман", "полиция", "радар"]
+
         super(ProductForm, self).__init__(*args, **kwargs)
 
         self.fields['name'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Введите название товара'})
@@ -33,6 +20,27 @@ class ProductForm(forms.ModelForm):
         self.fields['category'].widget.attrs.update({'class': 'form-control'})
         self.fields['image'].widget.attrs.update({'class': 'form-control-file'})
         self.fields['price'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Введите цену товара'})
+
+    def clean_name(self):
+        cleaned_data = super().clean()
+        cleaned_name = cleaned_data.get('name')
+        for word in self.forbidden_words:
+            if word.lower() in cleaned_name.lower():
+                raise ValidationError(f"Слово '{word}' нельзя использовать.")
+        return cleaned_name
+
+    def clean_description(self):
+        cleaned_data = super().clean()
+        cleaned_description = cleaned_data.get('description')
+        for word in self.forbidden_words:
+            if word.lower() in cleaned_description.lower():
+                raise ValidationError(f"Слово '{word}' нельзя использовать.")
+        return cleaned_description
+
+    def clean_price(self):
+        if self.cleaned_data['price'] < 0:
+            raise ValidationError("Цена не может быть отрицательной.")
+        return self.cleaned_data['price']
 
     def clean_image(self):
         image = self.cleaned_data.get('image')
@@ -43,8 +51,11 @@ class ProductForm(forms.ModelForm):
                 raise ValidationError("Размер файла превышает 5 МБ.")
 
             extensions = ['jpeg', 'png']
-            if image.content_type not in extensions:
+            try:
+                file = Image.open(image)
+                if file.format not in extensions:
+                    raise ValidationError("Только файлы JPEG и PNG.")
+            except Exception:
                 raise ValidationError("Только файлы JPEG и PNG.")
-
         return image
 
