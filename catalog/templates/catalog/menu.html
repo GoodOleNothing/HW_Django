@@ -8,5 +8,16 @@
     <li><a href="{% url 'catalog:contacts'%}" class="dropdown-item" type="button">Контакты</a></li>
     <li><a href="{% url 'catalog:product_list'%}" class="dropdown-item" type="button">Каталог</a></li>
     <li><a href="{% url 'catalog:add_product' %}" class="dropdown-item" type="button">Добавить продукт</a></li>
+    {% if user.is_authenticated %}
+      <li>
+        <form action="{% url 'users:logout' %}" method="post">
+          {% csrf_token %}
+          <button class="dropdown-item" type="submit">Выход</button>
+        </form>
+      </li>
+    {% else %}
+      <li><a href="{% url 'users:register' %}" class="dropdown-item" type="button">Регистрация</a></li>
+      <li><a href="{% url 'users:login' %}" class="dropdown-item" type="button">Вход</a></li>
+    {% endif %}
   </ul>
 </div>

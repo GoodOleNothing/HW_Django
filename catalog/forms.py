@@ -2,6 +2,7 @@ from django import forms
 from .models import Product
 from django.core.exceptions import ValidationError
 from PIL import Image
+from django.conf import settings
 
 
 class ProductForm(forms.ModelForm):
@@ -10,8 +11,6 @@ class ProductForm(forms.ModelForm):
         fields = ['name', 'description', 'image', 'category', 'price']
 
     def __init__(self, *args, **kwargs):
-        self.forbidden_words = ["казино", "криптовалюта", "крипта", "биржа", "дешево", "бесплатно",
-                                "обман", "полиция", "радар"]
 
         super(ProductForm, self).__init__(*args, **kwargs)
 
@@ -24,7 +23,7 @@ class ProductForm(forms.ModelForm):
     def clean_name(self):
         cleaned_data = super().clean()
         cleaned_name = cleaned_data.get('name')
-        for word in self.forbidden_words:
+        for word in settings.FORBIDDEN_WORDS:
             if word.lower() in cleaned_name.lower():
                 raise ValidationError(f"Слово '{word}' нельзя использовать.")
         return cleaned_name
@@ -32,8 +31,8 @@ class ProductForm(forms.ModelForm):
     def clean_description(self):
         cleaned_data = super().clean()
         cleaned_description = cleaned_data.get('description')
-        for word in self.forbidden_words:
-            if word.lower() in cleaned_description.lower():
+        for word in settings.FORBIDDEN_WORDS:
+            if word.lower() in cleaned_description:
                 raise ValidationError(f"Слово '{word}' нельзя использовать.")
         return cleaned_description
 
