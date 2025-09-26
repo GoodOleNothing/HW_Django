@@ -9,7 +9,15 @@
             {% csrf_token %}
             <div class="card">
                 <div class="card-body">
-            {{ form.as_p }}
+                    {% if perms.catalog.can_unpublish_product %}
+                        {{ form.as_p }}
+                    {% else %}
+                        <p>{{ form.name }}</p>
+                        <p>{{ form.description }}</p>
+                        <p>{{ form.image }}</p>
+                        <p>{{ form.category }}</p>
+                        <p>{{ form.price }}</p>
+                    {% endif %}
             <button type="submit" class="btn btn-lg btn-block btn-outline-primary mt-5">Изменить</button>
                 </div>
             </div>
