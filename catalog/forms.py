@@ -8,7 +8,7 @@ from django.conf import settings
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
-        fields = ['name', 'description', 'image', 'category', 'price']
+        fields = ['name', 'description', 'image', 'category', 'price', 'status']
 
     def __init__(self, *args, **kwargs):
 
@@ -19,6 +19,7 @@ class ProductForm(forms.ModelForm):
         self.fields['category'].widget.attrs.update({'class': 'form-control'})
         self.fields['image'].widget.attrs.update({'class': 'form-control-file'})
         self.fields['price'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Введите цену товара'})
+        self.fields['status'].widget.attrs.update({'class': 'form-control-select'})
 
     def clean_name(self):
         cleaned_data = super().clean()
@@ -49,12 +50,11 @@ class ProductForm(forms.ModelForm):
             if image.size > max_size:
                 raise ValidationError("Размер файла превышает 5 МБ.")
 
-            extensions = ['jpeg', 'png']
+            extensions = ['jpeg', 'png', 'jpg']
             try:
                 file = Image.open(image)
                 if file.format not in extensions:
                     raise ValidationError("Только файлы JPEG и PNG.")
             except Exception:
-                raise ValidationError("Только файлы JPEG и PNG.")
-        return image
+                return image
 

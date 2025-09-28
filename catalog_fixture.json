@@ -4,12 +4,14 @@
     "pk": 1,
     "fields": {
         "name": "Хлеб",
-        "description": "Хлеб описание...",
+        "description": "Хлеб описание...тест",
         "image": "product_image/Без_названия.jpeg",
         "category": 2,
         "price": 50,
-        "created_at": "2025-08-24T11:53:03.318Z",
-        "updated_at": "2025-08-24T13:32:58.730Z"
+        "created_at": "2025-08-28T14:47:51.712Z",
+        "updated_at": "2025-09-26T16:24:43.165Z",
+        "status": true,
+        "owner": null
     }
 },
 {
@@ -21,8 +23,10 @@
         "image": "product_image/Без_названия_2.jpeg",
         "category": 1,
         "price": 50000,
-        "created_at": "2025-08-24T11:53:03.325Z",
-        "updated_at": "2025-08-24T13:33:07.977Z"
+        "created_at": "2025-08-28T14:47:51.713Z",
+        "updated_at": "2025-09-25T18:17:14.831Z",
+        "status": true,
+        "owner": null
     }
 },
 {
@@ -34,8 +38,10 @@
         "image": "product_image/Без_названия_1.jpeg",
         "category": 2,
         "price": 110,
-        "created_at": "2025-08-24T11:53:03.325Z",
-        "updated_at": "2025-08-24T13:33:14.227Z"
+        "created_at": "2025-08-28T14:47:51.714Z",
+        "updated_at": "2025-09-25T18:17:21.141Z",
+        "status": false,
+        "owner": null
     }
 },
 {
@@ -47,8 +53,10 @@
         "image": "product_image/Без_названия_4.jpeg",
         "category": 3,
         "price": 1100,
-        "created_at": "2025-08-24T11:53:03.326Z",
-        "updated_at": "2025-08-24T13:33:22.648Z"
+        "created_at": "2025-08-28T14:47:51.714Z",
+        "updated_at": "2025-08-28T14:47:51.714Z",
+        "status": true,
+        "owner": null
     }
 },
 {
@@ -60,8 +68,10 @@
         "image": "product_image/Без_названия_5.jpeg",
         "category": 3,
         "price": 1500,
-        "created_at": "2025-08-24T11:53:03.327Z",
-        "updated_at": "2025-08-24T13:33:31.036Z"
+        "created_at": "2025-08-28T14:47:51.715Z",
+        "updated_at": "2025-09-19T08:54:01.525Z",
+        "status": false,
+        "owner": null
     }
 },
 {
@@ -73,21 +83,70 @@
         "image": "product_image/Без_названия_3.jpeg",
         "category": 1,
         "price": 110000,
-        "created_at": "2025-08-24T11:53:03.327Z",
-        "updated_at": "2025-08-24T13:33:37.329Z"
+        "created_at": "2025-08-28T14:47:51.715Z",
+        "updated_at": "2025-08-28T14:47:51.715Z",
+        "status": true,
+        "owner": null
     }
 },
 {
     "model": "catalog.product",
-    "pk": 8,
+    "pk": 7,
     "fields": {
         "name": "Макбет",
         "description": "Пьеса Шекспир, добавлена через POST",
         "image": "product_image/Без_названия6.jpeg",
         "category": 3,
         "price": 2300,
-        "created_at": "2025-08-24T19:40:53.601Z",
-        "updated_at": "2025-08-24T19:40:53.601Z"
+        "created_at": "2025-08-28T14:47:51.716Z",
+        "updated_at": "2025-08-28T14:47:51.716Z",
+        "status": true,
+        "owner": null
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 48,
+    "fields": {
+        "name": "Тест админ",
+        "description": "Тест админ Тест админ Тест админ Тест админ Тест админ Тест админ",
+        "image": "",
+        "category": 1,
+        "price": 11,
+        "created_at": "2025-09-26T18:07:29.519Z",
+        "updated_at": "2025-09-26T18:07:29.519Z",
+        "status": true,
+        "owner": 10
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 49,
+    "fields": {
+        "name": "Тест 1",
+        "description": "Тест 1 Тест 1 Тест 1 Тест 1 Тест 1 Тест 1",
+        "image": "",
+        "category": 1,
+        "price": 111,
+        "created_at": "2025-09-26T18:09:44.215Z",
+        "updated_at": "2025-09-26T18:09:44.215Z",
+        "status": false,
+        "owner": 14
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 50,
+    "fields": {
+        "name": "Тест 2",
+        "description": "Тест 2 Тест 2 Тест 2 Тест 2 Тест 2 Тест 2 Тест 2 Тест 2",
+        "image": "",
+        "category": 1,
+        "price": 1111111,
+        "created_at": "2025-09-26T18:11:49.817Z",
+        "updated_at": "2025-09-26T18:11:49.817Z",
+        "status": false,
+        "owner": 15
     }
 },
 {

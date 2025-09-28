@@ -1,5 +1,5 @@
 <header>
-    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+    <span class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
         <h5 class="my-0 mr-md-auto font-weight-normal">Skystore</h5>
             <nav class="ms-5">
                 <a class="p-2 btn btn-outline-primary" href="{% url 'catalog:home'%}">Домашняя странциа</a>
@@ -10,6 +10,7 @@
                 {% if user.is_authenticated %}
                 <form action="{% url 'users:logout' %}" method="post">
                     {% csrf_token %}
+                    <span>{{ user.email }}</span>
                     <button class="btn me-3 py-2 link-body-emphasis text-decoration-none" type="submit">Выход</button>
                 </form>
                 {% else %}
