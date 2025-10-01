@@ -18,5 +18,12 @@
                 <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{% url 'users:login' %}">Вход</a>
                 {% endif %}
             </nav>
-    </div>
+    </span>
+        <div class="nav-scroller py-1 mb-3 border-bottom">
+                <nav class="nav nav-underline justify-content-center">
+                    {% for category in categories %}
+                    <a class="nav-item nav-link link-body-emphasis" href="{% url 'catalog:from_same_category' category.pk %}">{{ category.name }}</a>
+                    {% endfor %}
+                </nav>
+            </div>
 </header>
