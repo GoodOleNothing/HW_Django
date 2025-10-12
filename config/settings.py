@@ -118,10 +118,9 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Yekaterinburg'
 
 USE_I18N = True
-
 USE_TZ = True
 
 
@@ -140,14 +139,14 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# AUTH and Email
-
+# AUTH
 AUTH_USER_MODEL = 'users.User'
 
 LOGIN_URL = "users:login"
-LOGIN_REDIRECT_URL = "/catalog/product_list/"
-LOGOUT_REDIRECT_URL = "/catalog/product_list/"
+LOGIN_REDIRECT_URL = "/messanger/home/"
+LOGOUT_REDIRECT_URL = "/messanger/home/"
 
+# Email
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.yandex.ru'
 EMAIL_PORT = 465

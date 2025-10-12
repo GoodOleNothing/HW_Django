@@ -7,6 +7,7 @@ from django.conf import settings
 
 
 class UserRegisterForm(UserCreationForm):
+
     class Meta:
         model = User
         fields = ['email', 'phone', 'avatar', 'country', 'password1', 'password2']

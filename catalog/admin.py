@@ -6,7 +6,7 @@ from django.contrib import admin
 # Register your models here.
 from .models import Product, Category
 from users.models import User
-from messanger.models import Message, MessageReceiver
+from messanger.models import Message, Recipient, Mailing, AttemptedMailing
 
 
 @admin.register(Product)
@@ -24,7 +24,7 @@ class Admin(admin.ModelAdmin):
 
 @admin.register(User)
 class Admin(admin.ModelAdmin):
-    list_display = ('email', 'phone', 'avatar', 'country')
+    list_display = ('id','email', 'phone', 'avatar', 'country', 'is_active')
 
 
 @admin.register(Message)
@@ -32,6 +32,16 @@ class Admin(admin.ModelAdmin):
     list_display = ('subject', 'message')
 
 
-@admin.register(MessageReceiver)
+@admin.register(Recipient)
 class Admin(admin.ModelAdmin):
-    list_display = ('email', 'fullname', 'comment')
+    list_display = ('email', 'fullname', 'comment', 'owner')
+
+
+@admin.register(Mailing)
+class Mailing(admin.ModelAdmin):
+    list_display = ('id', 'owner', 'start_time', 'end_time', 'status', 'message')
+
+
+@admin.register(AttemptedMailing)
+class AttemptedMailing(admin.ModelAdmin):
+    list_display = ('attempted_at', 'status', 'mail_server_response', 'mailing')

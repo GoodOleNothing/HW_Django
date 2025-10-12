@@ -16,7 +16,7 @@ from .service import ProductService
 # Create your views here.
 
 
-class SameCategryView(ListView):
+class SameCategoryView(ListView):
     model = Product
     template_name = 'catalog/same_category_list.html'
 
@@ -46,7 +46,6 @@ class ProductCatalog(ListView):
         context['is_manager'] = self.request.user.groups.filter(name="Product Manager").exists()
         context['categories'] = Category.objects.all()
         return context
-
 
 
 @method_decorator(cache_page(60 * 15), name='dispatch')
