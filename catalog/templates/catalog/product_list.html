@@ -12,6 +12,16 @@
         <div class="card mb-4 rounded-3 shadow-sm">
             <div class="card-header py-3">
                 <h4 class="my-0 fw-normal">{{ product.name }}</h4>
+                {% if product.status %}
+                <div class="text-muted">Активен</div>
+                {% else %}
+                <div class="text-muted">Не активен</div>
+                {% endif %}
+                {% if product.owner is None %}
+                <div class="text-muted">Нет владельца</div>
+                {% else %}
+                <div class="text-muted">{{ product.owner }}</div>
+                {% endif %}
             </div>
             <div class="card-body">
                 {% if product.image %}
@@ -26,11 +36,13 @@
                 {% endif %}
                     <h1 class="card-title pricing-card-title">{{ product.price }}<small class="text-body-secondary fw-light"> р</small></h1>
                         <ul class="list-unstyled mt-3 mb-4">
-                            <li>{{ product.description | truncatechars:100 }}</li>
+                            <li>{{ product.description | truncatechars:35 }}</li>
                         </ul>
                     <a href="{% url 'catalog:product_detail' product.pk %}" class="w-100 btn btn-lg btn-primary mb-3">Посмотреть</a>
+                {% if product.owner == request.user or is_manager %}
                     <a href="{% url 'catalog:update_product' product.pk %}" class="w-100 btn btn-lg btn-primary mb-3">Изменить</a>
                     <a href="{% url 'catalog:delete_product' product.pk %}" class="w-100 btn btn-lg btn-primary mb-3">Удалить</a>
+                {% endif %}
             </div>
         </div>
     </div>

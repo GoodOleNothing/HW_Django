@@ -1,0 +1,83 @@
+{% extends 'messanger/base.html' %}
+{% load template_tags %}
+{% block content %}
+    <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+        <div class="pricing-header px-3 py-3 pt-md-1 pb-md-4 mx-auto text-center">
+            <h1 class="display-4">Месэнджер</h1>
+        </div>
+    </div>
+<div class="row">
+    <div class="col-6 pb-3">
+        <ul class="list-unstyled ">
+            <li>Количество рассылок: {{ number_of_mailings }}</li>
+            <li>Количество рассылок: {{ number_of_mailings }}</li>
+            <li>Количество уникальных получателей: {{ unique_recipients }}</li>
+            <li>Количество успешных попыток рассылок пользователя: {{ successfull_attempts }}</li>
+            <li>Количество неуспешных попыток рассылок пользователя: {{ unsuccessfull_attempts }} </li>
+            <li>Количество отправленных сообщений: {{ message_count }} </li>
+        </ul>
+    </div>
+    {% if is_manager %}
+    <div class="col-6 border-start border-dark pb-3">
+        <ul class="list-unstyled ">
+            <li>Просмотр списока пользователей сервиса:<br>
+                {%for user in users_list%} {{ user }}
+                <form method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="user_id" value="{{ user.id }}">
+                    {% if user.is_active %}
+                        <button type="submit" class="btn btn-danger m-1">Заблокировать</button>
+                    {% else %}
+                    <button type="submit" class="btn btn-primary m-1">Разблокировать</button>{% endif %}
+                </form>
+                 {% endfor %}</li><br>
+            <li>Просмотр Просмотр всех клиентов: {% for recipient in recipients_list %} {{ recipient }}, {% endfor %}</li>
+
+        </ul>
+    </div>
+    {% endif %}
+</div>
+<div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+    {% for mailing in object_list %}
+
+    {% if mailing.owner == request.user or is_manager %}
+    <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm">
+            <div class="card-header py-3">
+            {{ mailing }}
+            </div>
+            <div class="card-body">
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <h6> Владелец: {{ mailing.owner }} </h6>
+                            <li> Начата: {{ mailing.start_time }} </li>
+                            <li> Закончена: {{ mailing.end_time }} </li>
+                            <h6>Получатели</h6>
+                               {% for recipient in mailing.recipients.all %}
+                               <li class="pb-1">{{ recipient.email }}
+                                 <a href="{% url 'messanger:recipient_update' recipient.pk %}" class=" btn btn-sm btn-primary">Настроить</a>
+                                 <a href="{% url 'messanger:recipient_delete' recipient.pk %}" class=" btn btn-sm btn-danger">X</a></li>
+                               {% empty %}
+                               <li>Нет получателей</li>
+                               {% endfor %}
+                        </ul>
+                 <h6>Сообщение</h6>
+                 <div class="mb-3 font-weight-normal">{{ mailing.message | truncatechars:35 }}
+                     <div>
+                         <a href="{% url 'messanger:message_update' mailing.message.pk %}" class=" btn btn-sm btn-primary">Настроить</a>
+                         <a href="{% url 'messanger:message_delete' mailing.message.pk %}" class=" btn btn-sm btn-danger">X</a>
+                     </div>
+                 </div>
+                <form method="post">
+                   {% csrf_token %}
+                   <input type="hidden" name="mailing_id" value="{{ mailing.id }}">
+                   <button type="submit" class="w-100 btn btn-lg btn-primary mb-3">Отправить</button>
+                </form>
+                <a href="{% url 'messanger:mailing_update' mailing.pk %}" class="w-100 btn btn-lg btn-primary mb-3">Изменить</a>
+                <a href="{% url 'messanger:mailing_delete' mailing.pk %}" class="w-100 btn btn-lg btn-primary mb-3">Удалить</a>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+</div>
+{% endblock %}
