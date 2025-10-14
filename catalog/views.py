@@ -8,18 +8,47 @@ from django import forms
 from .models import Product, Category
 from .forms import ProductForm
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+
+from django.core.cache import cache
+from django.views.decorators.cache import cache_page
+from django.utils.decorators import method_decorator
+from .service import ProductService
 # Create your views here.
+
+
+class SameCategoryView(ListView):
+    model = Product
+    template_name = 'catalog/same_category_list.html'
+
+    def get_queryset(self):
+        category_id = self.kwargs.get("category_id")
+        return ProductService.same_category(category_id)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['is_manager'] = self.request.user.groups.filter(name="Product Manager").exists()
+        context['categories'] = Category.objects.all()
+        return context
 
 
 class ProductCatalog(ListView):
     model = Product
 
+    def get_queryset(self):
+        data = cache.get('product_list')
+        if not data:
+            data = Product.objects.all()
+            cache.set('product_list', data, 60 * 15)
+        return data
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['is_manager'] = self.request.user.groups.filter(name="Product Manager").exists()
+        context['categories'] = Category.objects.all()
         return context
 
 
+@method_decorator(cache_page(60 * 15), name='dispatch')
 class ProductDetail(DetailView):
     model = Product
 

@@ -41,4 +41,3 @@ class Category(models.Model):
         verbose_name = 'Категоря'
         verbose_name_plural = 'Категории'
         ordering = ['id']
-

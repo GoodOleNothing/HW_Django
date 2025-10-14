@@ -1,0 +1,20 @@
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle m-3" type="button" data-bs-toggle="dropdown" aria-expanded="false"
+  style="width:13%;position:fixed;">
+    Главное меню
+  </button>
+  <ul class="dropdown-menu" style="width:13%;">
+    <li><a href="{% url 'messanger:home'%}" class="dropdown-item" type="button">Домашняя страница</a></li>
+    {% if user.is_authenticated %}
+      <li>
+        <form action="{% url 'users:logout' %}" method="post">
+          {% csrf_token %}
+          <button class="dropdown-item" type="submit">Выход</button>
+        </form>
+      </li>
+    {% else %}
+      <li><a href="{% url 'users:register' %}" class="dropdown-item" type="button">Регистрация</a></li>
+      <li><a href="{% url 'users:login' %}" class="dropdown-item" type="button">Вход</a></li>
+    {% endif %}
+  </ul>
+</div>
